@@ -4,5 +4,6 @@ ThisBuild / scalaVersion := "3.1.3"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "LegoInvoiceCreator"
+    name := "LegoInvoiceCreator",
+    libraryDependencies += "org.scalameta" %% "munit" % "0.7.29" % Test
   )
