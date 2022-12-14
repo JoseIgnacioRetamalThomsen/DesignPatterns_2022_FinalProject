@@ -1,6 +1,6 @@
 package ie.ucd.lego.data
 
-import ie.ucd.lego.Id
+import ie.ucd.lego.data.Id
 
 import scala.collection.mutable.ArrayBuffer
 

@@ -1,4 +1,6 @@
-package ie.ucd.lego
+package ie.ucd.lego.data
+
+import ie.ucd.lego.data.ComponentRequest
 
 case class InvoiceRequest(invoiceId:String,components : List[ComponentRequest])
 

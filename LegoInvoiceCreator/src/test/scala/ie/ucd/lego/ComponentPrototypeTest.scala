@@ -16,4 +16,11 @@ class ComponentPrototypeTest extends FunSuite {
     val blockSolid = ComponentPrototype.getComponent(component)
     println(blockSolid)
   }
+
+  test("that can add when key exists"){
+    ComponentPrototype.addComponent("Block","Medium")
+    println(ComponentPrototype.parts)
+    ComponentPrototype.updateComponentPrice("Block","Medium",12.5)
+    println(ComponentPrototype.parts)
+  }
 }

@@ -1,7 +1,8 @@
 package ie.ucd.lego.data
 
-import ie.ucd.lego.Component
+import ie.ucd.lego.data.Component
 import ie.ucd.lego.data.Id
+import ie.ucd.lego.decorator.AbstractComponentDecorator
 
 trait Component:
   def price: Double
@@ -24,3 +25,12 @@ case class Window(
                    price: Double = 17.50,
                  ) extends Component
 
+
+
+
+object PricesServices:
+  val mapPrice = Map("Block_Solid" -> 15.0)
+  def getUpdatedPrice(id:Id,actualPrice:Double):Double =
+    if mapPrice.contains(id.toString)
+    then mapPrice(id.toString)
+    else actualPrice
