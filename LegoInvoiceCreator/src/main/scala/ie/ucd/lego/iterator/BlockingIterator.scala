@@ -6,18 +6,21 @@ import java.util.concurrent.BlockingQueue
 import scala.collection.mutable.*
 import scala.concurrent.Future
 
+trait BlockingIteratorComponent[T]:
+  val blockingIterator: BlockingIterator[T]
+
 trait BlockingIterator[T]():
   def setQueue(outQueue: BlockingQueue[Future[T]]):Unit
   def next: Future[T]
 
 class BlockingIteratorImp[T]() extends BlockingIterator[T]() :
-  
+
   var q1: Queue[Future[T]] = Queue[Future[T]]()
   var outQueue : BlockingQueue[Future[T]] = null
 
   override def setQueue(outQueue: BlockingQueue[Future[T]]):Unit =
-    this.outQueue = outQueue 
-    
+    this.outQueue = outQueue
+
   override def next: Future[T] =
     var isFutureReady = false
     var toReturn: Future[T] = null

@@ -11,7 +11,6 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
 class InvoiceParser(invoiceRequest: InvoiceRequest):
-
   def getInvoiceFuture: Future[Invoice] =
     Future(getInvoice())
 
