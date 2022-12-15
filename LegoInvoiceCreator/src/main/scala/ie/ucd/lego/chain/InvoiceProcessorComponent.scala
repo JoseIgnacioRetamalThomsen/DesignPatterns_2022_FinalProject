@@ -1,4 +1,4 @@
-package ie.ucd.lego.cake
+package ie.ucd.lego.chain
 
 import ie.ucd.lego.chain.InvoiceProcessor
 

@@ -13,6 +13,6 @@ object Program extends Components :
   val invoiceProcessor = InvoiceProcessorImp()
   val invoiceParserService = InvoiceParserService()
 
-  def startService =
+  def startService(): Unit =
     Thread(invoiceProcessorService).start()
     Thread(invoiceParserService).start()

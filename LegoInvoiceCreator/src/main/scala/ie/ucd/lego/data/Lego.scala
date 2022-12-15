@@ -1,10 +1,11 @@
 package ie.ucd.lego.data
 
-import ie.ucd.lego.data.Component
+import ie.ucd.lego.data.Lego
 import ie.ucd.lego.data.Id
 import ie.ucd.lego.decorator.AbstractComponentDecorator
 
-trait Component:
+trait Lego:
+  def quantity : Int
   def price: Double
   def id: Id
 
@@ -12,18 +13,21 @@ trait Component:
 
 case class Block(
                   id : Id = Id("Block","Solid"),
-                  price: Double = 10.00,
-                ) extends Component
+                  quantity: Int = 1,
+                  price: Double = 10.00 ,
+                ) extends Lego
 
 case class Door(
                  id : Id = Id("Door","Frames4"),
                  price: Double = 12.50,
-               ) extends Component
+                 quantity: Int = 1
+               ) extends Lego
 
 case class Window(
                    id : Id = Id("Window","WithHandle"),
                    price: Double = 17.50,
-                 ) extends Component
+                   quantity: Int = 1
+                 ) extends Lego
 
 
 

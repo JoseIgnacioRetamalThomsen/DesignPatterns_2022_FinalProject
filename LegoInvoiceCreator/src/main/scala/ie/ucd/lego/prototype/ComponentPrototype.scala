@@ -8,20 +8,26 @@ import scala.collection.mutable.Map
 object ComponentPrototype:
   val forkJoinPool = new java.util.concurrent.ForkJoinPool(1)
 
-  val parts: Map[String, Map[String, Component]] = Map()
-  parts += ("Block" -> Map[String, Component]())
-  parts += ("Window" -> Map[String, Component]())
-  parts += ("Door" -> Map[String, Component]())
+  val parts: Map[String, Map[String, Lego]] = Map()
+  parts += ("Block" -> Map[String, Lego]())
+  parts += ("Window" -> Map[String, Lego]())
+  parts += ("Door" -> Map[String, Lego]())
   parts("Block") += ("Solid" -> Block())
   parts("Block") += ("Hollow" -> Block(id = Id("Block", "Hollow")))
   parts("Door") += ("WithHandle" -> Door())
   parts("Window") += ("Frames4" -> Window())
 
-  def getComponent(id: Id): Component =
+  def getComponent(id: Id): Lego =
     id.componentType match
       case "Block" => parts(id.componentType)(id.componentDetails).asInstanceOf[Block].copy()
       case "Door" => parts(id.componentType)(id.componentDetails).asInstanceOf[Door].copy()
       case "Window" => parts(id.componentType)(id.componentDetails).asInstanceOf[Window].copy()
+
+  def getComponent(id: Id, quantity:Int): Lego =
+    id.componentType match
+      case "Block" => parts(id.componentType)(id.componentDetails).asInstanceOf[Block].copy(quantity = quantity)
+      case "Door" => parts(id.componentType)(id.componentDetails).asInstanceOf[Door].copy(quantity = quantity)
+      case "Window" => parts(id.componentType)(id.componentDetails).asInstanceOf[Window].copy(quantity = quantity)
 
   def addComponent(componentType: String, componentDescription: String): Unit =
     forkJoinPool.execute(() => addNewComponent(componentType, componentDescription))

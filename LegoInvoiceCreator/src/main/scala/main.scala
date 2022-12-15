@@ -23,7 +23,7 @@ def main(): Unit = {
   list = list :+ ComponentRequest("Window_Frames4", 1)
   list = list :+ ComponentRequest("Window_Frames4", 1)
   list = list :+ ComponentRequest("Window_Frames4", 1)
-  Program.startService
+  Program.startService()
   Program.queues.invoiceParserInQueue.put(InvoiceRequest("1",list))
 
 }

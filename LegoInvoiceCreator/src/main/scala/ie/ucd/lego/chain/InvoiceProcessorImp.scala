@@ -2,7 +2,7 @@ package ie.ucd.lego.chain
 
 import ie.ucd.lego.chain.Process
 import ie.ucd.lego.composite.{Invoice, InvoiceAmend}
-import ie.ucd.lego.data.Component
+import ie.ucd.lego.data.Lego
 
 import scala.collection.mutable.ArrayBuffer
 

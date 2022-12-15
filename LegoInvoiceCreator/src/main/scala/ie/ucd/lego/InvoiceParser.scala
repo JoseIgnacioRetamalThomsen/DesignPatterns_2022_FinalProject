@@ -12,11 +12,11 @@ import scala.util.{Failure, Success}
 
 class InvoiceParser(invoiceRequest: InvoiceRequest):
   def getInvoiceFuture: Future[Invoice] =
-    Future(getInvoice())
+    Future(getInvoice)
 
-  private def getInvoice(): Invoice =
+  private def getInvoice: Invoice =
     val composite = Composite()
     invoiceRequest.components.foreach(c => {
-      composite.addComponent(ComponentDecorator(ComponentPrototype.getComponent(Id.fromString(c.id))))
+      composite.addComponent(ComponentDecorator(ComponentPrototype.getComponent(Id.fromString(c.id),2)))
     })
     Invoice(composite)

@@ -7,11 +7,10 @@ import scala.collection.mutable.ListBuffer
 class Invoice(val composite: Composite):
   val amends: ListBuffer[InvoiceAmend] = ListBuffer()
 
-  def addAmmend(ammend : InvoiceAmend) : Unit = amends += ammend
+  def addAmend(amend: InvoiceAmend): Unit = amends += amend
 
   def getTotal: Double =
     composite.price
-
 
   def quantity: Int = 5
 
