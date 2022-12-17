@@ -15,7 +15,7 @@ trait InvoiceParserServiceComponent {
   this: QueueComponent =>
   val invoiceParserService: InvoiceParserService
 
-  class InvoiceParserService() extends Runnable :
+  class InvoiceParserService extends Runnable :
     override def run(): Unit =
       while (true) {
         queues.invoiceParserOutQueue.offer(InvoiceParser(queues.invoiceParserInQueue.take()).getInvoiceFuture)

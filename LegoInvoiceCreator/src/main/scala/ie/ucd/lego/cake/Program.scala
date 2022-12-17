@@ -10,9 +10,11 @@ object Program extends Components :
   val queues = QueueImp()
   val blockingIterator = BlockingIteratorImp[Invoice]()
   val invoiceProcessorService = InvoiceProcessorService()
-  val invoiceProcessor = InvoiceProcessorImp()
+  val invoiceProcessor = InvoiceProcessorDiscount1()
   val invoiceParserService = InvoiceParserService()
+  val httpService = MockHttpService()
 
   def startService(): Unit =
     Thread(invoiceProcessorService).start()
     Thread(invoiceParserService).start()
+    Thread(httpService).start()

@@ -2,8 +2,8 @@ package ie.ucd.lego
 
 import ie.ucd.lego.composite.*
 import ie.ucd.lego.data.{Id, InvoiceRequest}
-import ie.ucd.lego.decorator.ComponentDecorator
-import ie.ucd.lego.prototype.ComponentPrototype
+import ie.ucd.lego.decorator.LegoDecorator
+import ie.ucd.lego.prototype.LegoPrototype
 
 import java.util.concurrent.{ExecutorService, ForkJoinPool}
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -15,8 +15,8 @@ class InvoiceParser(invoiceRequest: InvoiceRequest):
     Future(getInvoice)
 
   private def getInvoice: Invoice =
-    val composite = Composite()
+    val composite = InvoiceComposite(Id.fromString(invoiceRequest.invoiceId))
     invoiceRequest.components.foreach(c => {
-      composite.addComponent(ComponentDecorator(ComponentPrototype.getComponent(Id.fromString(c.id),2)))
+      composite.addComponent(LegoDecorator(LegoPrototype.getComponent(Id.fromString(c.id),c.amount)))
     })
     Invoice(composite)

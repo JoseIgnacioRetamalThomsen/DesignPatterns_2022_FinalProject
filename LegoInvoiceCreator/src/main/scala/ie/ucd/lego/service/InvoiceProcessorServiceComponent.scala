@@ -22,7 +22,7 @@ trait InvoiceProcessorServiceComponent {
 
     override def run(): Unit =
       while (true) {
-        blockingIterator.next.onComplete(invoice => println(invoiceProcessor.process(invoice.get)))
+        blockingIterator.next.onComplete(invoice => queues.invoiceDoneQueue.offer(invoiceProcessor.process(invoice.get)))
       }
 
 }

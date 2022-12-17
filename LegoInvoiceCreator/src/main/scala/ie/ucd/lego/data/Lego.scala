@@ -2,14 +2,14 @@ package ie.ucd.lego.data
 
 import ie.ucd.lego.data.Lego
 import ie.ucd.lego.data.Id
-import ie.ucd.lego.decorator.AbstractComponentDecorator
+import ie.ucd.lego.decorator.AbstractLegoDecorator
 
 trait Lego:
   def quantity : Int
   def price: Double
   def id: Id
 
-  override def toString = s"${id.componentType}_${id.componentDetails} €${price}"
+  override def toString = s"${id.componentType}_${id.componentDetails} x${quantity} €${price*quantity}"
 
 case class Block(
                   id : Id = Id("Block","Solid"),
@@ -32,9 +32,4 @@ case class Window(
 
 
 
-object PricesServices:
-  val mapPrice = Map("Block_Solid" -> 15.0)
-  def getUpdatedPrice(id:Id,actualPrice:Double):Double =
-    if mapPrice.contains(id.toString)
-    then mapPrice(id.toString)
-    else actualPrice
+

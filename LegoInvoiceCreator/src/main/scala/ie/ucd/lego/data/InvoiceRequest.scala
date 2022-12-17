@@ -1,7 +1,7 @@
 package ie.ucd.lego.data
 
-import ie.ucd.lego.data.ComponentRequest
+import ie.ucd.lego.data.LegoRequest
 
-case class InvoiceRequest(invoiceId:String,components : List[ComponentRequest])
+case class InvoiceRequest(invoiceId:String,components : List[LegoRequest])
 
-case class ComponentRequest(id:String, amount: Int)
+case class LegoRequest(id:String, amount: Int)

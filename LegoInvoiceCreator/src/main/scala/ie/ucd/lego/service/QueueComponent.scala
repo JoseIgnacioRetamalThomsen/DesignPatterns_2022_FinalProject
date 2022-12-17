@@ -12,9 +12,10 @@ trait QueueComponent:
 trait QueueTrait:
   val invoiceParserInQueue: BlockingQueue[InvoiceRequest]
   val invoiceParserOutQueue: BlockingQueue[Future[Invoice]]
-
+  val invoiceDoneQueue: BlockingQueue[Invoice]
 
 
 class QueueImp extends QueueTrait :
-  val invoiceParserInQueue: BlockingQueue[InvoiceRequest] = new LinkedBlockingQueue[InvoiceRequest]()
-  val invoiceParserOutQueue: BlockingQueue[Future[Invoice]] = new LinkedBlockingQueue[Future[Invoice]]()
+  val invoiceParserInQueue: BlockingQueue[InvoiceRequest] = LinkedBlockingQueue[InvoiceRequest]()
+  val invoiceParserOutQueue: BlockingQueue[Future[Invoice]] = LinkedBlockingQueue[Future[Invoice]]()
+  val invoiceDoneQueue: BlockingQueue[Invoice] = LinkedBlockingQueue[Invoice]()

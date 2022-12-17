@@ -2,25 +2,25 @@ package ie.ucd.lego
 
 import ie.ucd.lego.data.Id
 import munit.FunSuite
-import prototype.ComponentPrototype
+import prototype.LegoPrototype
 
 class ComponentPrototypeTest extends FunSuite {
 
   test("that initialize"){
-    assertEquals(3,ComponentPrototype.parts.size)
-    print(ComponentPrototype.parts)
+    assertEquals(3,LegoPrototype.parts.size)
+    print(LegoPrototype.parts)
   }
 
   test("that can get component"){
     val component = Id("Block","Solid")
-    val blockSolid = ComponentPrototype.getComponent(component)
+    val blockSolid = LegoPrototype.getComponent(component)
     println(blockSolid)
   }
 
   test("that can add when key exists"){
-    ComponentPrototype.addComponent("Block","Medium")
-    println(ComponentPrototype.parts)
-    ComponentPrototype.updateComponentPrice("Block","Medium",12.5)
-    println(ComponentPrototype.parts)
+    LegoPrototype.addComponent("Block","Medium")
+    println(LegoPrototype.parts)
+    LegoPrototype.updateComponentPrice("Block","Medium",12.5)
+    println(LegoPrototype.parts)
   }
 }
