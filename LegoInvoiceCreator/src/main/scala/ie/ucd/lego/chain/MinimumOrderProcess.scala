@@ -1,5 +1,6 @@
 package ie.ucd.lego.chain
-import ie.ucd.lego.composite.{Invoice, InvoiceAmend}
+import ie.ucd.lego.composite.Invoice
+import ie.ucd.lego.data.InvoiceAmend
 
 class MinimumOrderProcess(nextProcessor: Option[Process], minAmount: Double, extraCharge: Double) extends Process(nextProcessor):
   override def process(invoice: Invoice): Invoice =

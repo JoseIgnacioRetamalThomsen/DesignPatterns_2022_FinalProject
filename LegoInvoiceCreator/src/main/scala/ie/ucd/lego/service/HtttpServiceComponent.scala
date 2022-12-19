@@ -18,6 +18,8 @@ trait HtttpServiceComponent {
   class MockHttpService extends HttpService:
 
     new Thread(()=> println(Tests.tester1(queues.invoiceParserInQueue))).start()
+    new Thread(()=> println(Tests.tester2(queues.invoiceParserInQueue))).start()
+    new Thread(()=> println(Tests.tester3(queues.invoiceParserInQueue))).start()
 
     def invoiceRequest(request: InvoiceRequest): InvoiceResponse =
       queues.invoiceParserInQueue.offer(request)
@@ -37,7 +39,7 @@ trait HtttpServiceComponent {
 object Tests:
   def tester1(queue:BlockingQueue[InvoiceRequest]):Unit=
     val rand = new scala.util.Random
-      for(i <- 1 to 1000){
+      for(i <- 1 to 100000){
         var list = List(LegoRequest("Block_Solid", math.abs(rand.nextInt()%100)),
           LegoRequest("Block_Hollow", math.abs(rand.nextInt()%100)),
           LegoRequest("Window_Frames4", math.abs(rand.nextInt()%10)),
@@ -45,12 +47,32 @@ object Tests:
         queue.offer(InvoiceRequest("Shop1_"+i,list))
       }
 
-//    queue.offer(InvoiceRequest("Shop1_000001",list))
       val request = LegoRequest("Room_Basic",1)
       val componentRequest1 = LegoRequest("Block_Solid", 10)
       var list1 = List(request,componentRequest1)
       println(InvoiceRequest("Shop1_000002",list1))
       queue.offer(InvoiceRequest("Shop1_000002",list1))
+
+  def tester2(queue:BlockingQueue[InvoiceRequest]):Unit=
+    val rand = new scala.util.Random
+    for (i <- 1 to 100000) {
+      var list = List(LegoRequest("Room_Basic", math.abs(rand.nextInt() % 10)),
+        LegoRequest("Block_Hollow", math.abs(rand.nextInt() % 100)),
+        LegoRequest("Window_Frames4", math.abs(rand.nextInt() % 10)),
+        LegoRequest("Door_WithHandle", math.abs(rand.nextInt() % 10)))
+      queue.offer(InvoiceRequest("Shop2_" + 99+ i, list))
+    }
+
+  def tester3(queue: BlockingQueue[InvoiceRequest]): Unit =
+    val rand = new scala.util.Random
+    for (i <- 1 to 100000) {
+      var list = List(LegoRequest("Block_Solid", math.abs(rand.nextInt() % 100)),
+        LegoRequest("Block_Hollow", math.abs(rand.nextInt() % 100)),
+        LegoRequest("Window_Frames4", math.abs(rand.nextInt() % 10)),
+        LegoRequest("Door_WithHandle", math.abs(rand.nextInt() % 10)))
+      queue.offer(InvoiceRequest("Shop1_" + 7+i, list))
+    }
+
 
 
 

@@ -1,6 +1,7 @@
 package ie.ucd.lego.composite
 
 import ie.ucd.lego.composite.InvoiceComposite
+import ie.ucd.lego.data.InvoiceAmend
 
 import scala.collection.mutable.ListBuffer
 
@@ -9,7 +10,7 @@ class Invoice(val composite: InvoiceComposite):
   
   def addAmend(amend: InvoiceAmend): Unit = amends += amend
 
-  def quantity: Int = 5
+  def quantity: Int = 1
 
   override def toString: String =
     var result = s"Invoice #${composite.id.componentDetails} shop ${composite.id.componentType}\n\nDetails:\n"
@@ -26,6 +27,5 @@ class Invoice(val composite: InvoiceComposite):
   def getTotalAmends: Double =
     amends.map(_.amount).sum
 
-case class InvoiceAmend(amount: Double, description: String):
-  override def toString: String = s"${description} amount: €${amount}"
+
 

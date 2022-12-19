@@ -25,6 +25,4 @@ case class InvoiceComposite(compositeId:Id,quantity: Int = 1) extends Lego :
     result += components.map(_.toString).mkString("\n")
     result += s"\n\nPrice Before Amends: €${price}\n"
     result += s"\n\nAmends:\n"
-
-    //s"\n${id}\n${s}\nTOTAL PRICE: €${price}"
     result
